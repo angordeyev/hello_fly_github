@@ -9,4 +9,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: superfly/flyctl-actions/setup-flyctl@master
+    - uses: actions/cache@v3
+      with:
+        path: |
+          deps
+          _build
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-mix-
     - run: flyctl deploy --remote-only

@@ -11,8 +11,8 @@ jobs:
     - name: cache-elixir
       uses: actions/cache@v2
       with:
-        path: ~/.mix
-        key: ${{ runner.os }}-123
+        path: /var
+        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: |
           ${{ runner.os }}-mix-
     - uses: superfly/flyctl-actions/setup-flyctl@master

@@ -7,13 +7,6 @@ jobs:
     name: Deploy app
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: cache-elixir
-      uses: actions/cache@v2
-      with:
-        path: /var
-        key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-mix-
+    - uses: actions/checkout@v3
     - uses: superfly/flyctl-actions/setup-flyctl@master
     - run: flyctl deploy --remote-only
